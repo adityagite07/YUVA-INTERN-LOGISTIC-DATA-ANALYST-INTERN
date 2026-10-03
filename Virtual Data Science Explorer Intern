@@ -13,11 +13,6 @@ Key Objectives:
 Develop a predictive machine learning model using Python to forecast the probability of a user churning in the next 30 days.
 Segment high-risk customers into actionable groups for the marketing team.
 
-
-
-
-
-
 Scope Definition:-
 In-Scope: Analysis of the past 24 months of customer data (demographics, billing history, service usage, and customer support ticket logs). Batch prediction models.
 
@@ -30,10 +25,6 @@ The project will follow a standard Data Science lifecycle, specifically aligning
 Step 3: Exploratory Data Analysis (EDA): Perform univariate and bivariate analysis. Generate correlation matrices to identify variables strongly linked to churn (e.g., month-to-month contracts vs. 1-year contracts).
 Step 4: Predictive Modeling: Establish a baseline using Logistic Regression. Subsequently, train advanced ensemble models such as Random Forest and XGBoost to capture complex, non-linear relationships.
 Step 5: Model Evaluation: Since churn datasets are highly imbalanced (most people do not churn), accuracy is a flawed metric. The models will be evaluated using the F1-Score and the Area Under the Receiver Operating Characteristic Curve (ROC-AUC).
-
-
-
-
 
 4. Timeline & Tools
 Estimated Timeline (Total: 35 Hours)
@@ -54,12 +45,109 @@ Technology Stack:
 Expected Outcomes:
 The primary deliverable will be a robust, validated machine learning model capable of scoring active users with a "Churn Probability Percentage." This will be accompanied by a feature importance dashboard highlighting what drives churn (e.g., high technical support tickets or sudden price hikes), allowing business units to act decisively.
 
-
-
 Anticipated Challenges & Mitigation:
 Challenge: Class Imbalance. Only a small fraction of the dataset represents churned customers, which can cause the model to bias towards the majority class.
 oMitigation: Implement the Synthetic Minority Over-sampling Technique (SMOTE) to synthetically balance the dataset during the training phase.
 Challenge: Data Privacy Constraints.
 oMitigation: Ensure strict adherence to data masking protocols, stripping Personally Identifiable Information (PII) such as names and raw addresses prior to the EDA and modeling phases.
 
+Week 2 Task: Exploratory Data Analysis (EDA) and Visualization Framework Design
+Role: Virtual Data Science Explorer Intern.
 
+Objective: To establish a standardized, comprehensive framework for conducting Exploratory Data Analysis (EDA) and data visualization that can be universally applied to future datasets.
+
+1. Introduction to EDA
+Exploratory Data Analysis (EDA) is the critical first step in the data science pipeline. It involves systematically investigating a dataset to summarize its main characteristics, uncover hidden patterns, detect anomalies, and test underlying assumptions. Before any machine learning models can be built, EDA ensures that the data is clean, relevant, and well-understood. A robust EDA framework prevents "garbage in, garbage out" scenarios by validating data quality and informing subsequent feature engineering and modeling strategies.
+
+2. Potential Data Types
+A standardized EDA framework must be adaptable to various data types, primarily including:-
+•	Numerical Data: Continuous (e.g., exact temperature, price) and Discrete (e.g., number of items purchased).
+•	Categorical Data: Nominal (e.g., color, gender) and Ordinal (e.g., customer satisfaction ratings from low to high).
+•	Time-Series Data: Data indexed by time (e.g., daily sales, hourly website traffic).
+
+3. Data Exploration Techniques
+The framework separates exploration into structured statistical approaches and data cleaning methodologies:-
+Statistical Analysis
+•	Univariate Analysis: Analyzing a single variable to describe its data distribution. Techniques include calculating central tendencies (mean, median, mode) and dispersion metrics (range, variance, standard deviation, skewness).
+•	Bivariate Analysis: Examining two variables simultaneously to determine empirical relationships. Techniques include calculating Pearson or Spearman correlation coefficients for continuous variables, or performing Chi-Square tests for categorical variables.
+•	Multivariate Analysis: Analyzing three or more variables to understand complex interactions. Techniques include dimensionality reduction (e.g., Principal Component Analysis) and cross-tabulations.
+
+Data Cleaning Protocols
+•	Handling Missing Data: Missing values can skew models. The framework dictates first identifying the missingness mechanism (Missing Completely at Random, Missing at Random, etc.). Solutions include imputation (filling with mean, median, or mode for numerical data; mode for categorical), using predictive imputation (K-Nearest Neighbors), or dropping rows/columns if the missing percentage exceeds a threshold (e.g., >40%).
+•	Outlier Detection and Treatment: Outliers can severely impact model weights. Detection methods include the Interquartile Range (IQR) bounds (values below Q1 - 1.5IQR or above Q3 + 1.5IQR) and Z-score calculations (values > 3 standard deviations from the mean). Treatment involves capping (Winsorization), transforming (log transformations), or removing the extreme records depending on domain context.
+
+4. Proposed Visualization Strategies
+Visual storytelling is essential for translating raw numbers into interpretable insights. The framework employs the following plot types:-
+•	Histograms and Kernel Density Estimation (KDE) Plots: Used during univariate analysis to visualize the probability distribution of a continuous variable (e.g., age distribution).
+•	Box Plots (Whisker Plots): Ideal for identifying outliers and comparing the distribution of a numerical variable across different categories (e.g., salaries across different departments).
+•	Scatter Plots: The primary tool for bivariate analysis to observe linear or non-linear relationships between two continuous variables.
+•	Heat Maps: Utilized for multivariate analysis to visualize correlation matrices. They quickly highlight features that are highly collinear, which is crucial for feature selection.
+•	Bar Charts and Count Plots: Used to display the frequency or proportion of categorical variables.
+
+5. Tools and Python Libraries
+This framework relies on a modern Python stack tailored for efficient data manipulation and high-quality rendering:-
+•	pandas: The foundational library for data manipulation. Used for loading datasets, handling missing values, calculating descriptive statistics, and aggregating data.
+•	matplotlib: The core plotting library in Python. It provides fine-grained control over plot elements (axes, labels, titles) for highly customized, static charts
+•	seaborn: Built on top of matplotlib, seaborn provides a high-level interface for drawing attractive statistical graphics. It simplifies the creation of complex plots like violin plots, pair plots, and annotated heatmaps.
+•	plotly: Used when interactive visualizations are required. Plotly allows users to hover over data points, zoom, and pan, which is highly effective for dashboard presentations and granular data inspection.
+
+6. Reporting and Documentation Plan
+To ensure findings are communicated effectively to both technical and non-technical stakeholders, the EDA results will be documented using Jupyter Notebooks (allowing for the integration of Markdown, HTML formatting, code, and visualizations) and compiled into a final report structured as follows:
+
+1.	Executive Summary: A high-level overview of the dataset and the top 3-5 critical insights discovered.
+2.	Data Quality Report: Documentation of the initial dataset shape, missing value percentages, identified outliers, and the specific cleaning actions taken.
+3.	Exploratory Findings: The core section featuring annotated visualizations (scatter plots, heat maps) mapped directly to business questions or hypotheses.
+4.	Next Steps & Modeling Recommendations: Guidelines on which features to drop (due to high collinearity or low variance), feature engineering suggestions, and the proposed machine learning algorithms best suited for the data's distribution.
+
+
+Week 3 Task: Python-Based Machine Learning Model Development and Evaluation Plan
+Objective
+1)ObjectiveIn Week 3, your task is to design a detailed plan for developing and evaluating a machine learning model using Python.
+
+2)This exercise will require you to work through the conceptual phases of model selection, training, testing, and validation by creating a structured plan in a DOC file.
+
+3)Although no actual code execution is needed, your plan should reflect a deep understanding of the process involved in implementing a machine learning system.
+
+4)DeliverablesA DOC file that includes a detailed step-by-step plan to develop a machine learning model.
+
+5)Sections that cover model selection, preprocessing, training, evaluation, and possible deployment.
+
+6)Diagrams or flowcharts representing the machine learning workflow.
+
+7)A discussion on performance evaluation metrics and validation strategies.
+
+8)Key StepsProblem Definition: Define a hypothetical problem that can be solved using machine learning.
+
+9)Justify the choice of problem and relevance of the approach.
+
+10)Data Preprocessing: Describe steps for data cleaning, normalization, feature engineering, and selection.
+
+11)Include potential challenges and solutions.
+
+12)Model Selection and Training: Propose different models (e.
+
+13)g.
+
+14)linear regression, decision trees, ensemble methods) and argue for the chosen model.
+
+15)Lay out the training process and discuss hyperparameter tuning strategies.
+
+16)Evaluation Metrics: Identify and justify the use of specific evaluation metrics (e.
+
+17)g.
+
+18)accuracy, precision, recall, F1-score, ROC AUC) and explain how cross-validation will ensure robust model performance.
+
+19)Model Deployment (Optional): Conceptualize how the model could eventually be maintained and updated after deployment.
+
+20)Evaluation CriteriaThoroughness in covering all phases of machine learning model development.
+
+21)Clarity and logic in explaining the steps involved.
+
+22)Quality of diagrams ensuring a visual representation of the workflow.
+
+23)Understanding of evaluation and validation concepts applicable to real-world scenarios.
+
+24)This assignment is designed to simulate a real-world scenario where strategic planning for modeling is crucial.
+
+25)Devote approximately 30 to 35 hours to outline a robust approach that can guide a full-scale machine learning implementation project.
