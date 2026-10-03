@@ -101,53 +101,76 @@ To ensure findings are communicated effectively to both technical and non-techni
 
 
 Week 3 Task: Python-Based Machine Learning Model Development and Evaluation Plan
-Objective
-1)ObjectiveIn Week 3, your task is to design a detailed plan for developing and evaluating a machine learning model using Python.
+Role: Virtual Data Science Explorer Intern
 
-2)This exercise will require you to work through the conceptual phases of model selection, training, testing, and validation by creating a structured plan in a DOC file.
+Objective: To design a structured, end-to-end strategic plan for developing, training, and evaluating a machine learning model using Python.
 
-3)Although no actual code execution is needed, your plan should reflect a deep understanding of the process involved in implementing a machine learning system.
 
-4)DeliverablesA DOC file that includes a detailed step-by-step plan to develop a machine learning model.
+1. Problem Definition
+Hypothetical Problem: Predicting Residential Real Estate Prices in a rapidly growing metropolitan housing market.
+Justification: Real estate pricing is a classic and highly impactful regression problem. Accurate price prediction models allow homebuyers, sellers, and real estate platforms (e.g., Zillow, Redfin) to make data-driven financial decisions rather than relying on subjective human appraisals. Machine learning is uniquely suited for this because it can automatically capture complex, non-linear relationships between a property's features (e.g., location, age, square footage) and its ultimate market value.
 
-5)Sections that cover model selection, preprocessing, training, evaluation, and possible deployment.
+2. Data Preprocessing Strategy
+Before feeding data into an algorithm, the raw data must be cleaned and transformed to ensure high model accuracy.
+	Data Cleaning: We will handle missing values strategically. For continuous variables like Lot_Size, we will use median imputation. Records missing the target variable (Sale_Price) will be dropped entirely.
+	Normalization & Scaling: Features like Square_Footage (in thousands) and Number_of_Bedrooms (single digits) operate on vastly different scales. We will apply StandardScaler from the scikit-learn library to standardize numerical features, ensuring large-magnitude variables do not disproportionately dominate the model's weight updates.
 
-6)Diagrams or flowcharts representing the machine learning workflow.
+	Feature Engineering: We will create derived features to provide the model with better context. For example, creating a House_Age variable (Current Year - Year Built) and a Price_per_SqFt variable.
+	Feature Selection: We will generate a correlation matrix. If two features are highly correlated (e.g., Total_Rooms and Square_Footage), one will be dropped to prevent multicollinearity, which can destabilize some models.
+	Challenges & Solutions:
+	Challenge: High-cardinality categorical variables, such as Zip_Code. Standard One-Hot Encoding would create hundreds of sparse columns.
+	Solution: Implement Target Encoding (replacing the zip code with the average house price in that zip code) or group infrequent zip codes into an "Other" category.
 
-7)A discussion on performance evaluation metrics and validation strategies.
+3. Machine Learning Workflow Diagram
+Plaintext
+[Raw Data] 
+    │
+    ▼
+[Data Preprocessing] ── (Cleaning, Scaling, Encoding, Feature Engineering)
+    │
+    ▼
+[Data Splitting] ── (80% Training Set / 20% Test Set)
+    │
+    ▼
+[Model Training & Cross-Validation] ── (GridSearchCV + Random Forest)
+    │
+    ▼
+[Model Evaluation] ── (Calculate MAE, RMSE, R-Squared on Test Set)
+    │
+    ▼
+[Model Deployment] ── (REST API via Flask/FastAPI)
 
-8)Key StepsProblem Definition: Define a hypothetical problem that can be solved using machine learning.
+4. Model Selection and Training
+Proposed Models:
+	Multiple Linear Regression: Serves as a baseline model due to its high interpretability, though it struggles with non-linear patterns.
+	Decision Tree Regressor: Captures non-linear relationships well but is highly prone to overfitting the training data.
+	Random Forest Regressor: An ensemble method that builds multiple decision trees and averages their outputs.
 
-9)Justify the choice of problem and relevance of the approach.
+Chosen Model: Random Forest Regressor.
+Argument: Real estate data involves complex interactions (e.g., a pool adds value in a warm climate but might decrease value in a cold climate). Random Forest naturally handles these non-linear interactions without requiring extensive mathematical transformations. Furthermore, it is robust to outliers and provides a "Feature Importance" score to explain which variables drive housing prices the most.
 
-10)Data Preprocessing: Describe steps for data cleaning, normalization, feature engineering, and selection.
+Training & Hyperparameter Tuning:
+The dataset will be split into an 80% training set and a 20% testing set. To prevent the model from memorizing the data, we will use GridSearchCV to systematically test different combinations of hyperparameters, specifically tuning:
+	n_estimators: The number of trees in the forest (e.g., 100, 200, 500).
+	max_depth: The maximum depth of the trees to prevent overfitting.
+	min_samples_split: The minimum number of samples required to split an internal node.
 
-11)Include potential challenges and solutions.
+5. Evaluation Metrics and Validation Strategies
+Since this is a regression problem (predicting a continuous price), classification metrics like accuracy or F1-score are invalid. Instead, we will use:
+	Mean Absolute Error (MAE): Calculates the average absolute dollar amount the model's predictions are off by. It is highly interpretable for business stakeholders.
+	Root Mean Squared Error (RMSE): Penalizes larger errors more heavily than smaller ones. In real estate, mispricing a home by $100,000 is significantly more detrimental than mispricing two homes by $50,000 each.
+	R-Squared (R^2): Represents the percentage of the variance in house prices that is explained by the model's inputs (a score closer to 1.0 indicates a highly predictive model).
 
-12)Model Selection and Training: Propose different models (e.
+Validation Strategy (K-Fold Cross-Validation):
+To ensure robust performance, we will implement 5-Fold Cross-Validation on the training data. The data will be split into 5 equal parts; the model will train on 4 parts and validate on the 1 remaining part, rotating until all parts have been used as the validation set. This guarantees the model's performance metrics are not the result of a "lucky" train/test split and that the model will generalize well to unseen real estate listings.
 
-13)g.
 
-14)linear regression, decision trees, ensemble methods) and argue for the chosen model.
+6. Model Deployment (Optional)
+Once the model achieves the target RMSE, it will be serialized (saved) using Python's joblib or pickle library.
+	Deployment: The model will be wrapped in a REST API using the FastAPI or Flask framework, allowing web applications to send JSON payloads of house features and receive an instant price prediction.
+	Maintenance: Real estate markets are subject to inflation and macroeconomic shifts, leading to "Model Drift" (where the model's accuracy degrades over time as data changes). To maintain the system, an automated pipeline will be scheduled to retrain the Random Forest model quarterly using the most recent housing transaction data.
 
-15)Lay out the training process and discuss hyperparameter tuning strategies.
 
-16)Evaluation Metrics: Identify and justify the use of specific evaluation metrics (e.
 
-17)g.
 
-18)accuracy, precision, recall, F1-score, ROC AUC) and explain how cross-validation will ensure robust model performance.
 
-19)Model Deployment (Optional): Conceptualize how the model could eventually be maintained and updated after deployment.
-
-20)Evaluation CriteriaThoroughness in covering all phases of machine learning model development.
-
-21)Clarity and logic in explaining the steps involved.
-
-22)Quality of diagrams ensuring a visual representation of the workflow.
-
-23)Understanding of evaluation and validation concepts applicable to real-world scenarios.
-
-24)This assignment is designed to simulate a real-world scenario where strategic planning for modeling is crucial.
-
-25)Devote approximately 30 to 35 hours to outline a robust approach that can guide a full-scale machine learning implementation project.
