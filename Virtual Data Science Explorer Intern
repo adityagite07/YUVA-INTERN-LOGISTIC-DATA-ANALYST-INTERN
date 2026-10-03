@@ -1,1 +1,65 @@
+Week 1 Task: Data Science Project Planning and Strategy Design.
+
+Role: Virtual Data Science Explorer Intern
+Project Title: Predicting Customer Churn in a Telecommunications Network
+
+1. Introduction & Background
+Hypothetical Problem: A regional telecommunications provider is experiencing a rising customer attrition (churn) rate. Customers are canceling their monthly subscriptions and migrating to competitors at a rate of 15% per quarter.
+Project Motivation: Customer acquisition is historically five to twenty times more expensive than customer retention. By leveraging data science to predict which customers are highly likely to churn before they actually cancel, the company can deploy targeted retention strategies (e.g., customized discounts, proactive customer service), thereby preserving revenue and increasing customer lifetime value.
+
+2. Project Objectives & Scope
+Key Objectives:
+Identify the primary historical indicators and behavioral features that drive customer churn.
+Develop a predictive machine learning model using Python to forecast the probability of a user churning in the next 30 days.
+Segment high-risk customers into actionable groups for the marketing team.
+
+
+
+
+
+
+Scope Definition:-
+In-Scope: Analysis of the past 24 months of customer data (demographics, billing history, service usage, and customer support ticket logs). Batch prediction models.
+
+Out-of-Scope: Real-time (streaming) churn prediction, sentiment analysis of call center audio logs, and the actual execution of the marketing retention campaigns.
+
+3. Methodology & Strategy
+The project will follow a standard Data Science lifecycle, specifically aligning with the CRISP-DM framework.
+Step 1: Data Collection: Extract historical customer data via SQL queries from the company’s internal CRM and billing databases.
+Step 2: Data Cleaning & Preprocessing: Handle missing demographic values via imputation, encode categorical variables (e.g., contract type, payment method), and scale numerical features (e.g., monthly charges).
+Step 3: Exploratory Data Analysis (EDA): Perform univariate and bivariate analysis. Generate correlation matrices to identify variables strongly linked to churn (e.g., month-to-month contracts vs. 1-year contracts).
+Step 4: Predictive Modeling: Establish a baseline using Logistic Regression. Subsequently, train advanced ensemble models such as Random Forest and XGBoost to capture complex, non-linear relationships.
+Step 5: Model Evaluation: Since churn datasets are highly imbalanced (most people do not churn), accuracy is a flawed metric. The models will be evaluated using the F1-Score and the Area Under the Receiver Operating Characteristic Curve (ROC-AUC).
+
+
+
+
+
+4. Timeline & Tools
+Estimated Timeline (Total: 35 Hours)
+Phase 1: Project Planning & Data Gathering (5 Hours): Defining metrics and extracting data.
+Phase 2: Data Cleaning & EDA (10 Hours): Handling nulls, outliers, and generating visualizations.
+Phase 3: Feature Engineering & Modeling (12 Hours): Creating new variables, training algorithms, and tuning hyperparameters.
+Phase 4: Evaluation & Validation (5 Hours): Cross-validation and finalizing model metrics.
+Phase 5: Reporting & Documentation (3 Hours): Compiling findings into an executive presentation.
+
+Technology Stack:
+Language: Python 3.x
+Data Manipulation: pandas, numpy
+Visualization: matplotlib, seaborn
+Machine Learning: scikit-learn (Modeling, preprocessing, and evaluation metrics)
+Environment: Jupyter Notebook
+
+5. Expected Outcomes & Challenges
+Expected Outcomes:
+The primary deliverable will be a robust, validated machine learning model capable of scoring active users with a "Churn Probability Percentage." This will be accompanied by a feature importance dashboard highlighting what drives churn (e.g., high technical support tickets or sudden price hikes), allowing business units to act decisively.
+
+
+
+Anticipated Challenges & Mitigation:
+Challenge: Class Imbalance. Only a small fraction of the dataset represents churned customers, which can cause the model to bias towards the majority class.
+oMitigation: Implement the Synthetic Minority Over-sampling Technique (SMOTE) to synthetically balance the dataset during the training phase.
+Challenge: Data Privacy Constraints.
+oMitigation: Ensure strict adherence to data masking protocols, stripping Personally Identifiable Information (PII) such as names and raw addresses prior to the EDA and modeling phases.
+
 
